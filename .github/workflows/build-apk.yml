@@ -20,6 +20,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+            - name: Restore Figma configuration
+        run: |
+          mkdir -p .figma/make
+          if [ ! -f .figma/make/site.json ]; then
+            echo '{"description":"","robots":{"index":false},"accessibility":{"addBypassLinks":false,"ignoreReducedMotion":false}}' > .figma/make/site.json
+          fi
+
       - name: Build Web App
         run: npm run build
 
